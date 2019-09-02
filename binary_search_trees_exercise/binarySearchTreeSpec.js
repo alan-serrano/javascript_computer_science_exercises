@@ -15,8 +15,8 @@ describe("#Binary Search Tree", function(){
 
 describe("#Node", function(){
   it("contains a value", function(){
-    expect(node.value).to.equal(15)
-    expect(node.hasOwnProperty('value')).to.equal(true)
+    expect(node.val).to.equal(15)
+    expect(node.hasOwnProperty('val')).to.equal(true)
   });
   it("has a left value initialized at null", function(){
     expect(node.left).to.equal(null)
@@ -31,7 +31,7 @@ describe("#Node", function(){
 describe("#insertIteratively", function(){
   it("inserts a node at the root if there is nothing there", function(){
     binarySearchTree.insertIteratively(15)
-    expect(binarySearchTree.root.value).to.deep.equal(15)
+    expect(binarySearchTree.root.val).to.deep.equal(15)
     expect(binarySearchTree.root.left).to.equal(null)
     expect(binarySearchTree.root.right).to.equal(null)
   });
@@ -40,22 +40,22 @@ describe("#insertIteratively", function(){
     binarySearchTree.insertIteratively(20)
     binarySearchTree.insertIteratively(10)
     binarySearchTree.insertIteratively(12)
-    expect(binarySearchTree.root.value).to.deep.equal(15)
-    expect(binarySearchTree.root.right.value).to.deep.equal(20)
-    expect(binarySearchTree.root.left.right.value).to.deep.equal(12)
+    expect(binarySearchTree.root.val).to.deep.equal(15)
+    expect(binarySearchTree.root.right.val).to.deep.equal(20)
+    expect(binarySearchTree.root.left.right.val).to.deep.equal(12)
   });
   it("returns the binarySearchTree so that the method can be chained", function(){
     binarySearchTree.insertIteratively(15).insertIteratively(20).insertIteratively(10).insertIteratively(12)
-    expect(binarySearchTree.root.value).to.equal(15)
-    expect(binarySearchTree.root.right.value).to.equal(20)
-    expect(binarySearchTree.root.left.right.value).to.equal(12)
+    expect(binarySearchTree.root.val).to.equal(15)
+    expect(binarySearchTree.root.right.val).to.equal(20)
+    expect(binarySearchTree.root.left.right.val).to.equal(12)
   });
 });
 
 describe("#insertRecursively", function(){
   it("inserts a node at the root if there is nothing there", function(){
     binarySearchTree.insertRecursively(15)
-    expect(binarySearchTree.root.value).to.equal(15)
+    expect(binarySearchTree.root.val).to.equal(15)
     expect(binarySearchTree.root.left).to.equal(null)
     expect(binarySearchTree.root.right).to.equal(null)
   });
@@ -64,15 +64,15 @@ describe("#insertRecursively", function(){
     binarySearchTree.insertRecursively(20)
     binarySearchTree.insertRecursively(10)
     binarySearchTree.insertRecursively(12)
-    expect(binarySearchTree.root.value).to.equal(node.value)
-    expect(binarySearchTree.root.right.value).to.equal(20)
-    expect(binarySearchTree.root.left.right.value).to.equal(12)
+    expect(binarySearchTree.root.val).to.equal(node.val)
+    expect(binarySearchTree.root.right.val).to.equal(20)
+    expect(binarySearchTree.root.left.right.val).to.equal(12)
   });
   it("returns the binarySearchTree so that the method can be chained", function(){
     binarySearchTree.insertRecursively(15).insertRecursively(20).insertRecursively(10).insertRecursively(12)
-    expect(binarySearchTree.root.value).to.equal(node.value)
-    expect(binarySearchTree.root.right.value).to.equal(20)
-    expect(binarySearchTree.root.left.right.value).to.equal(12)
+    expect(binarySearchTree.root.val).to.equal(node.val)
+    expect(binarySearchTree.root.right.val).to.equal(20)
+    expect(binarySearchTree.root.left.right.val).to.equal(12)
   });
 });
 
@@ -80,7 +80,7 @@ describe("#findIteratively", function(){
   it("finds a node correctly", function(){
     binarySearchTree.insertIteratively(15).insertIteratively(20).insertIteratively(10).insertIteratively(12)
     var foundNode = binarySearchTree.findIteratively(20)
-    expect(foundNode.value).to.equal(20)
+    expect(foundNode.val).to.equal(20)
     expect(foundNode.left).to.equal(null)
     expect(foundNode.right).to.equal(null)
   });
@@ -97,7 +97,7 @@ describe("#findRecursively", function(){
     // insert four nodes
     binarySearchTree.insertIteratively(15).insertIteratively(20).insertIteratively(10).insertIteratively(12)
     var foundNode = binarySearchTree.findRecursively(20)
-    expect(foundNode.value).to.equal(20)
+    expect(foundNode.val).to.equal(20)
     expect(foundNode.left).to.equal(null)
     expect(foundNode.right).to.equal(null)
   });
@@ -157,23 +157,23 @@ describe("#remove", function(){
   it("should correctly remove a node with no children", function(){
     binarySearchTree.insertIteratively(15).insertIteratively(20).insertIteratively(10).insertIteratively(12).insertIteratively(1).insertIteratively(5).insertIteratively(50)
     binarySearchTree.remove(50)
-    expect(binarySearchTree.root.right.value).to.equal(20)
+    expect(binarySearchTree.root.right.val).to.equal(20)
     expect(binarySearchTree.root.right.right).to.equal(null)
 
     binarySearchTree.remove(5)
-    expect(binarySearchTree.root.left.left.value).to.equal(1)
+    expect(binarySearchTree.root.left.left.val).to.equal(1)
     expect(binarySearchTree.root.left.left.right).to.equal(null)
   });
   it("should correctly remove a node with one child", function(){
     binarySearchTree.insertIteratively(15).insertIteratively(20).insertIteratively(10).insertIteratively(12).insertIteratively(1).insertIteratively(5).insertIteratively(50)
 
     binarySearchTree.remove(1)
-    expect(binarySearchTree.root.left.left.value).to.equal(5)
+    expect(binarySearchTree.root.left.left.val).to.equal(5)
     expect(binarySearchTree.root.left.left.left).to.equal(null)
     expect(binarySearchTree.root.left.left.right).to.equal(null)
 
     binarySearchTree.remove(20)
-    expect(binarySearchTree.root.right.value).to.equal(50)
+    expect(binarySearchTree.root.right.val).to.equal(50)
     expect(binarySearchTree.root.right.right).to.equal(null)
     expect(binarySearchTree.root.right.left).to.equal(null)
   });
@@ -182,13 +182,13 @@ describe("#remove", function(){
     binarySearchTree.insertIteratively(15).insertIteratively(20).insertIteratively(10).insertIteratively(12).insertIteratively(1).insertIteratively(5).insertIteratively(50).insertIteratively(60).insertIteratively(30).insertIteratively(25).insertIteratively(23).insertIteratively(24).insertIteratively(70)
 
     binarySearchTree.remove(10)
-    expect(binarySearchTree.root.left.value).to.equal(12)
-    expect(binarySearchTree.root.left.left.value).to.equal(1)
-    expect(binarySearchTree.root.left.left.right.value).to.equal(5)
+    expect(binarySearchTree.root.left.val).to.equal(12)
+    expect(binarySearchTree.root.left.left.val).to.equal(1)
+    expect(binarySearchTree.root.left.left.right.val).to.equal(5)
 
     binarySearchTree.remove(50)
-    expect(binarySearchTree.root.right.value).to.equal(20)
-    expect(binarySearchTree.root.right.right.value).to.equal(60)
-    expect(binarySearchTree.root.right.right.left.value).to.equal(30)
+    expect(binarySearchTree.root.right.val).to.equal(20)
+    expect(binarySearchTree.root.right.right.val).to.equal(60)
+    expect(binarySearchTree.root.right.right.left.val).to.equal(30)
   });
 });
