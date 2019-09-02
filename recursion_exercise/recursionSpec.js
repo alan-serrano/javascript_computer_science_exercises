@@ -30,22 +30,32 @@ describe("#collectStrings", function(){
 });
 
 describe("#contains", function(){
+  var nestedObject = {
+      data: {
+          info: {
+              stuff: {
+                  thing: {
+                      moreStuff: {
+                          magicNumber: 44
+                      }
+                  }
+              }
+          }
+      },
+
+      anotherData: "bar"
+  }
+
   it("should return true if a value is found in an object", function(){
-    var nestedObject = {
-        data: {
-            info: {
-                stuff: {
-                    thing: {
-                        moreStuff: {
-                            magicNumber: 44
-                        }
-                    }
-                }
-            }
-        }
-    }
     expect(contains(nestedObject, 44)).to.equal(true) // true)
+    expect(contains(nestedObject, "bar")).to.equal(true) // true)
+    
   });
+
+  it("should return false if a value isn't found in an object", function () {
+    expect(contains(nestedObject, "foo")).to.equal(false) // false)
+  })
+
 });
 
 describe("#search", function(){
